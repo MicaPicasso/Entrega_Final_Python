@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import *
+from .forms import *
 from . import forms
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
-from .forms import *
+
 
 def index(request):
     return render(request, "Curso/index.html")
@@ -31,7 +32,7 @@ def productos(request):
     contexto = {"productos": consulta}
     return render(request, "Curso/productos.html", contexto)
 
-
+@login_required
 def productos_form(request):
     if request.method == "POST":
         form= forms.ProductosForm(request.POST)
@@ -42,6 +43,8 @@ def productos_form(request):
         form = forms.ProductosForm()
     return render(request, "Curso/productos_form.html", {"form": form})
 
+
+@login_required
 def productos_delete(request, pk:int):
     consulta= Producto.objects.get(id=pk)
     if request.method == "POST":
@@ -49,12 +52,16 @@ def productos_delete(request, pk:int):
         return redirect("productos")
     return render(request, "Curso/productos_confirm_delete.html", {"object": consulta})
 
+
+@login_required
 def productos_details(request, pk:int):
     consulta= Producto.objects.get(id = pk)
     if request.method == "POST":
         consulta.detail()
         return redirect("productos")
     return render(request, "Curso/productos_details.html", {"object": consulta})
+
+
 @login_required
 def proveedores(request):
     # consulta=models.Proveedor.objects.all()
@@ -62,6 +69,8 @@ def proveedores(request):
     contexto={"proveedores": consulta}
     return render(request, "Curso/proveedores.html", contexto)
 
+
+@login_required
 def proveedores_form(request):
     if request.method == "POST":
         form= forms.ProveedoresForm(request.POST)
@@ -73,7 +82,7 @@ def proveedores_form(request):
     return render(request, "Curso/proveedores_form.html", {"form": form})
 
 @login_required
-def categoria(LoginRequiredMixin,request):
+def categoria(request):
   consulta=Categoria.objects.all()
   contexto={"object_list": consulta}
   return render(request, "Curso/categoria.html", contexto)
@@ -90,6 +99,7 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect("login")
+            
     else: 
         form = CustomUserCreationForm()
     return render(request, "Curso/register.html", {"form": form})

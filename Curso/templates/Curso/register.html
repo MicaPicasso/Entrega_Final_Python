@@ -16,7 +16,7 @@
     <section class="py-5 bg-light">
         <div class="container px-4 px-lg-5 mt-5">
             <h2>REGISTRATE</h2>
-           <form method="post" class="form-control">
+           <form method="post" class="form-control" action="{% url 'register' %}">
             {% csrf_token %}´
             {{form.as_p}}
             <div>

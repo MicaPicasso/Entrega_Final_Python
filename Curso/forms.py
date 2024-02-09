@@ -2,16 +2,6 @@ from django import forms
 from . import models
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
-class ProductosForm(forms.ModelForm):
-    class Meta:
-        model = models.Producto
-        fields = "__all__"
-
-
-class ProveedoresForm(forms.ModelForm):
-    class Meta:
-        model = models.Proveedor
-        fields = "__all__"
 
 
 class CustomAuthenticationForm(AuthenticationForm):
@@ -32,3 +22,15 @@ class CustomUserCreationForm(UserCreationForm):
             "password1": forms.PasswordInput(attrs={"class": "form-control"}),
             "password2": forms.PasswordInput(attrs={"class": "form-control"}),
         }
+
+
+class ProductosForm(forms.ModelForm):
+    class Meta:
+        model = models.Producto
+        fields = "__all__"
+
+
+class ProveedoresForm(forms.ModelForm):
+    class Meta:
+        model = models.Proveedor
+        fields = "__all__"

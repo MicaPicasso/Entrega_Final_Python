@@ -1,0 +1,44 @@
+{% extends 'Curso/base.html' %}
+
+{% block title %}
+    | INICIO
+{% endblock title %}
+{% block navigation %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="{% url 'index' %}">INICIO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'productos' %}">Productos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'proveedores' %}">Proveedores</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'categoria' %}">Categorias</a></li>
+                <li style="margin-left: 700px;" class="nav-item">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">CERRAR SESIÓN</button>
+                    </form>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" >
+                <li style="border: 1px solid black" class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'login' %}">INICIAR SESIÓN</a></li>
+                <li style="border: 1px solid black; margin-left: 15px" class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'register' %}">REGISTRARSE</a></li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+{% endblock navigation %}
+{% block content %}
+<div class="section-inicio">
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4">PROYECTO FINAL</h2>
+            <h3>Picasso Micaela</h3>
+            
+        </div>
+    </section>
+</div>
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends 'Curso/base.html' %}
+
+{% block title %}
+    | PRODUCTOS
+{% endblock title %}
+{% block navigation %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="{% url 'index' %}">INICIO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'productos' %}">Productos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'proveedores' %}">Proveedores</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'categoria' %}">Categorias</a></li>
+            </ul>
+            <form class="d-flex">
+                <button class="btn btn-outline-dark mp-border-button">
+                    <a href="{% url 'productos_form' %}" class="mp-style-button">NUEVO PRODUCTO</a>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+{% endblock navigation %}
+{% block content %}
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <button style="border:none; background-color: transparent;"><a style="color:black" href="{% url 'productos' %}">← TODOS LOS PRODUCTOS</a></button>  
+          
+            
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{object.imagen}}" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{object.nombre}}</h5>
+                                <!-- Product price-->
+                                ${{object.precio}},00
+                                <hr>
+                                <p>STOCK: {{object.stock}}</p>
+                                <p>PROVEEDOR: {{object.proveedor}}</p>
+                                <p>CATEGORIA: {{object.categoria}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+
+

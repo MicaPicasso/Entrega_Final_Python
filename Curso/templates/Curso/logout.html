@@ -1,0 +1,23 @@
+{% extends 'Curso/base.html' %}
+
+{% block title %}
+    | LOGOUT
+{% endblock title %}
+{% block navigation %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="{% url 'index' %}">INICIO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    </div>
+</nav>
+{% endblock navigation %}
+{% block content %}
+<div class="section-inicio">
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2>Has cerrado la sesión correctamente</h2>
+          
+        </div>
+    </section>
+</div>
+{% endblock content %}

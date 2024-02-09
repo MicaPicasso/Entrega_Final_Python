@@ -1,0 +1,41 @@
+{% extends 'Curso/base.html' %}
+
+{% block title %}
+    | NUEVO PRODUCTO
+{% endblock title %}
+{% block navigation %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="{% url 'index' %}">INICIO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'productos' %}">Productos</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'proveedores' %}">Proveedores</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'categoria' %}">Categorias</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock navigation %}
+{% block content %}
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4">Nuevo Producto</h2>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div id="form-main">
+                    <div id="form-div">
+                            
+                        <form method="POST" class="form" id="form1">
+                        {% csrf_token %}
+                        {{form.as_p}} 
+                        <div class="submit">
+                          <input type="submit" value="AGREGAR" id="button-blue"/>
+                          <div class="ease"></div>
+                        </div>
+                      </form>
+                    </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
